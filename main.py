@@ -86,6 +86,15 @@ class Mentor:
     
     def __str__(self):
         return f"Преподаватель {self.__name} {self.__surname}"
+    
+class Lecturer(Mentor):
+    def __init__(self, nameMentor, surnameMentor):
+        super().__init__(nameMentor, surnameMentor)
+
+class Reviewer(Mentor):
+    def __init__(self, nameMentor, surnameMentor):
+        super().__init__(nameMentor, surnameMentor)
+
 
 student1 = Student('Mark', 'Zdorovets', 'man')
 # ? как праильно реализовать добавление може быть 1 или срузу несколько
