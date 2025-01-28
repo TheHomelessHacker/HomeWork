@@ -113,17 +113,6 @@ class Student():
                 # print(f"Лектор {lecturer.getName} не прикреплён к курсу {course}")
         else:
             print("У нас 10-ти бальная система оценивания!")
-        
-    # ! переделать с использованием фолшебный методов
-    def ComparisonOfStudents(self, student2):
-        if self.getAvarageGrade() > student2.getAvarageGrade():
-            return (f"В сравнении студентов {self.getNameStudent()} и {student2.getNameStudent()}\n"
-                    f"Лучше оказался студент {self.getNameStudent()} со средним баллом {self.getAvarageGrade()}")
-        elif self.getAvarageGrade() < student2.getAvarageGrade():
-            return (f"В сравнении студентов {self.getNameStudent()} и {student2.getNameStudent()}\n"
-                    f"Лучше оказался студент {student2.getNameStudent()} со средним баллом {self.getAvarageGrade()}")
-        else:
-            return f"студенты {self.getNameStudent()} и {student2.getNameStudent()} имеют одинаковый средний балл {self.getAvarageGrade()}"
 
     def __eq__(self, other):
         if self.getAvarageGrade() == other.getAvarageGrade():
@@ -140,18 +129,11 @@ class Student():
         return self.getAvarageGrade() > other.getAvarageGrade()
 
     def __str__(self):
-        # вот правильно
         return (f"Имя: {self.__name}\n"
                 f"Фамилия: {self.__surname}\n"
                 f"Средняя оценка за домашние задания: {self.getAvarageGrade()}\n"
                 f"Курсы в процессе изучения: {self.getInProgressCourses()}\n"
                 f"Завершенные курсы: {self.getFinishCourses()}\n")
-        # вот так неправильно 
-#         return f"Имя: {self.__name}\n\
-# Фамилия: {self.__surname}\n\
-# Средняя оценка за домашние задания: {self.getAvarageGrade()}\n\
-# Курсы в процессе изучения: {self.getInProgressCourses()}\n\
-# Завершенные курсы: {self.getFinishCourses()}"
 
 
 class Mentor:
@@ -225,15 +207,6 @@ class Lecturer(Mentor):
             #KeyError "У лектора нет оценок по курсу!!"
             return 0
 
-    # ! переделять при помощи магических методов
-    def comparisonOfLecturers(self, lecturer2):
-        if self.getAvarageGrade() > lecturer2.getAvarageGrade():
-            return f"Лучше оказался преподавтель {self.getName()}"
-        elif self.getAvarageGrade() < lecturer2.getAvarageGrade():
-            return f"Лучше оказался преподавтель {lecturer2.getName()}"
-        else:
-            return f"Преподаватели {self.getName()} и {lecturer2.getName()} получили от студентов одинаковые оценки"
-
     def __eq__(self, other):
         if self.getAvarageGrade() == other.getAvarageGrade():
             print(f"Преподаватели {self.getName()} и {other.getName()} получили от студентов одинаковые оценки")
@@ -247,7 +220,6 @@ class Lecturer(Mentor):
         else:
             print(f"Лучше оказался преподавтель {other.getName()}")
         return self.getAvarageGrade() > other.getAvarageGrade()
-
 
     def __str__(self):
         return (f"Имя: {self.getName()}\n"
@@ -314,9 +286,7 @@ listLecturer = []
 
 student1 = Student('Mark', 'Zdorovets', 'man')
 listStudent.append(student1)
-# ? как праильно реализовать добавление може быть 1 или срузу несколько(зависит от задачаи)
 student1.setCoursesInProgress("OOP")
-# ? как праильно реализовать добавление може быть 1 или срузу несколько(зависит от задачаи)
 student1.setFinishedCourses(['Python', 'Git'])
 student1.setGrades({'Python': [10, 10, 10]})
 student1.setGrades({'Git': [10, 10, 10]})
@@ -333,11 +303,9 @@ student3 = Student("Jef", "Bezos", "robot")
 listStudent.append(student3)
 student1.setCoursesInProgress("Python")
 student3.setGrades({'Python': [8, 8, 7]})
-# print(student3)
 
 student1.__eq__(student2)
 student1.__gt__(student2)
-# print(student1.ComparisonOfStudents(student2), '\n')
 
 lecturer1 = Lecturer("Peta", "W")
 listLecturer.append(lecturer1)
@@ -367,7 +335,6 @@ reviewer1.setCoursesAttached("OOP")
 print(reviewer1)
 print(reviewer1.getCoursesAttached(), '\n')
 
-# reviewer1 оценил модуль "OOP"
 print(f"Оценки студента Mark {student1.getGrades()}\n")
 reviewer1.AssessmentOfStudentWork(student1, "OOP", 10)
 print(f"Оценки студента Mark {student1.getGrades()}\n")
